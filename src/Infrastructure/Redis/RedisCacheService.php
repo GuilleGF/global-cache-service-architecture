@@ -20,12 +20,12 @@ class RedisCacheService implements CacheService
         return $this->connection->get($key);
     }
 
-    public function set($query, $result)
+    public function set($query, $result, $ttl)
     {
         $key = $this->generateKey($query);
         $contend = $this->serializeContend($result);
 
-        return $this->connection->set($key, $contend);
+        return $this->connection->set($key, $contend, $ttl);
     }
 
     private function generateKey($query)

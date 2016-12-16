@@ -34,8 +34,9 @@ class DemoRepository implements DemoRepositoryInterface
             return $result;
         }
 
+        $ttl = 3600;
         $result = $this->connection->excute($query);
-        $this->cacheService->set($query, $result);
+        $this->cacheService->set($query, $result, $ttl);
 
         return $result;
     }
